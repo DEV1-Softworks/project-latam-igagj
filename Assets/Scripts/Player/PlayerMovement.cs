@@ -50,20 +50,20 @@ public class PlayerMovement : MonoBehaviour
 
         if (movementVector.x != 0f)
         {
-            rb.position += movementSpeed * Time.fixedDeltaTime * movementVector;
+            rb.position += movementSpeed * Time.fixedDeltaTime * new Vector2(movementVector.x, 0f);
             playerAnimations.SetMoveBoolTransition(true);
 
             // -1 as X local scale "flips" the player to the left
             if (movementVector.x < 0f)
             {
                 transform.localScale = new(-1f, 1f);
-                playerAnimations.SetMoveAnimation(movementVector);
             }
             else
             {
                 transform.localScale = new(1f, 1f);
-                playerAnimations.SetMoveAnimation(movementVector);
             }
+
+            playerAnimations.SetMoveAnimation(movementVector);
         }
         else
         {
@@ -83,6 +83,6 @@ public class PlayerMovement : MonoBehaviour
     // Check if the player is on the ground
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
+        return Physics2D.BoxCast(playerCollider.bounds.center, playerCollider.bounds.size, 0f, Vector2.down, 0.2f, groundLayer);
     }
 }
