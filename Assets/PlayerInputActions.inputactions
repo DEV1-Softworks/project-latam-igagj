@@ -2,11 +2,11 @@
     "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Movement",
+            "name": "Player 1",
             "id": "b7b5c4ee-5d40-40d4-ad0c-a20f5dda8749",
             "actions": [
                 {
-                    "name": "Move(WASD)",
+                    "name": "Movement",
                     "type": "Value",
                     "id": "1b5db40b-ba3a-43be-b964-876583d20fc5",
                     "expectedControlType": "Vector2",
@@ -17,13 +17,13 @@
             ],
             "bindings": [
                 {
-                    "name": "Vector2",
+                    "name": "WASD",
                     "id": "d2abe843-a5da-414b-81d4-9b70957420d0",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move(WASD)",
+                    "action": "Movement",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -34,7 +34,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move(WASD)",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -45,7 +45,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move(WASD)",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -56,7 +56,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move(WASD)",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -67,7 +67,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move(WASD)",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
