@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D playerCollider;
 
+    private PlayerAnimations playerAnimations;
+
     private void OnEnable()
     {
         GameInput.Instance.inputActions.Player1.Jump.performed += Jump_performed;
@@ -29,13 +31,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
+        playerAnimations = GetComponent<PlayerAnimations>();
     }
 
     private void Update()
     {
         movementVector = GameInput.Instance.GetMovementVector();
     }
-    
+
     private void FixedUpdate()
     {
         HandleHorizontalMovement();
@@ -48,12 +51,23 @@ public class PlayerMovement : MonoBehaviour
         if (movementVector.x != 0f)
         {
             rb.position += movementSpeed * Time.fixedDeltaTime * movementVector;
+            playerAnimations.SetMoveBoolTransition(true);
 
             // -1 as X local scale "flips" the player to the left
             if (movementVector.x < 0f)
+            {
                 transform.localScale = new(-1f, 1f);
+            }
             else
+            {
                 transform.localScale = new(1f, 1f);
+            }
+
+            playerAnimations.SetMoveAnimation(movementVector);
+        }
+        else
+        {
+            playerAnimations.SetMoveBoolTransition(false);
         }
 
 

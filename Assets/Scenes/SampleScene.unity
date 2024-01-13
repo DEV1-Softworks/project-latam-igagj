@@ -610,6 +610,8 @@ GameObject:
   - component: {fileID: 1141575513}
   - component: {fileID: 1141575512}
   - component: {fileID: 1141575511}
+  - component: {fileID: 1141575515}
+  - component: {fileID: 1141575514}
   m_Layer: 0
   m_Name: Player1 Visual
   m_TagString: Untagged
@@ -705,6 +707,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 683659526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!1 &1593179519
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,11 +726,15 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &1593179520
+=======
+--- !u!114 &1141575514
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 1593179519}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -736,10 +743,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!4 &1593179521
 Transform:
+=======
+  m_GameObject: {fileID: 1141575510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb29d16af00f4c98b16e48d2e0bee64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1141575515
+MonoBehaviour:
+>>>>>>> Stashed changes
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 1593179519}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -749,6 +767,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  m_GameObject: {fileID: 1141575510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb23df4b86f0ba469fbd7869936e2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+>>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
