@@ -38,6 +38,7 @@ public class PlayerCombat : MonoBehaviour
 
             ParticleSystem newParticle = Instantiate(sparksParticles, gunEndPoint.position, gunEndPoint.rotation);
             newParticle.Play();
+            Destroy(newParticle.gameObject, 1f);
         }
     }
 }
