@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementVector = GameInput.Instance.GetMovementVector();
     }
-
+    
     private void FixedUpdate()
     {
         HandleHorizontalMovement();
@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
         if (movementVector.x != 0f)
         {
             rb.position += movementSpeed * Time.fixedDeltaTime * movementVector;
-
 
             // -1 as X local scale "flips" the player to the left
             if (movementVector.x < 0f)
