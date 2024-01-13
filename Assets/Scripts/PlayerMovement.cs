@@ -57,13 +57,13 @@ public class PlayerMovement : MonoBehaviour
             if (movementVector.x < 0f)
             {
                 transform.localScale = new(-1f, 1f);
+                playerAnimations.SetMoveAnimation(movementVector);
             }
             else
             {
                 transform.localScale = new(1f, 1f);
+                playerAnimations.SetMoveAnimation(movementVector);
             }
-
-            playerAnimations.SetMoveAnimation(movementVector);
         }
         else
         {
