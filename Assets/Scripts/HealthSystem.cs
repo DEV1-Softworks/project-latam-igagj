@@ -12,7 +12,7 @@ public class HealthSystem : MonoBehaviour
 
     public void TakeDamage()
     {
-        health --;
+        health--;
         if (health <= 0)
             Die();
         OnHealthChanged?.Invoke(health);

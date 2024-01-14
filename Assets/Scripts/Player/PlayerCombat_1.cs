@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,12 +18,12 @@ public class PlayerCombat_1 : MonoBehaviour
 
     private void OnEnable()
     {
-        GameInput.Instance.inputActions.Player1.Attack.performed += Attack_performed;   
+        InputManager.Instance.inputActions.Player1.Attack.performed += Attack_performed;
     }
 
     private void OnDisable()
     {
-        GameInput.Instance.inputActions.Player1.Attack.performed -= Attack_performed;
+        InputManager.Instance.inputActions.Player1.Attack.performed -= Attack_performed;
     }
 
     // Spawn a projectile that ignores players, at gunEndPoint, taking player direction into account
@@ -37,7 +35,7 @@ public class PlayerCombat_1 : MonoBehaviour
             Quaternion gunRotation = Quaternion.Euler(0f, 0f, gunAngle);
 
             GameObject projectile = Instantiate(pfProjectile, gunEndPoint.position, gunRotation);
-            
+
             // Modify projectile
             Projectile projectileScript = projectile.GetComponent<Projectile>();
             projectileScript.SetShootForce(shootForceMagnitude);

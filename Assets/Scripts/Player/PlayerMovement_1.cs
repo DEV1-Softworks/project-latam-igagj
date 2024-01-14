@@ -20,12 +20,12 @@ public class PlayerMovement_1 : MonoBehaviour
 
     private void OnEnable()
     {
-        GameInput.Instance.inputActions.Player1.Jump.performed += Jump_performed;
+        InputManager.Instance.inputActions.Player1.Jump.performed += Jump_performed;
     }
 
     private void OnDisable()
     {
-        GameInput.Instance.inputActions.Player1.Jump.performed -= Jump_performed;
+        InputManager.Instance.inputActions.Player1.Jump.performed -= Jump_performed;
     }
 
     private void Awake()
@@ -37,7 +37,7 @@ public class PlayerMovement_1 : MonoBehaviour
 
     private void Update()
     {
-        movementVector = GameInput.Instance.GetPlayer1MovementVector();
+        movementVector = InputManager.Instance.GetPlayer1MovementVector();
     }
 
     private void FixedUpdate()

@@ -40,7 +40,7 @@ public class SpawnManager : MonoBehaviour
         while (true)
         {
             Instantiate(pfEnemy, enemySpawnPositions[Random.Range(0, enemySpawnPositions.Length)].position, Quaternion.identity);
-            yield return new WaitForSeconds(1f/spawnRate);
+            yield return new WaitForSeconds(1f / spawnRate);
         }
     }
 

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,12 +18,12 @@ public class PlayerCombat_2 : MonoBehaviour
 
     private void OnEnable()
     {
-        GameInput.Instance.inputActions.Player2.Attack.performed += Attack_performed;   
+        InputManager.Instance.inputActions.Player2.Attack.performed += Attack_performed;
     }
 
     private void OnDisable()
     {
-        GameInput.Instance.inputActions.Player2.Attack.performed -= Attack_performed;
+        InputManager.Instance.inputActions.Player2.Attack.performed -= Attack_performed;
     }
 
     // Spawn a projectile that ignores players, at gunEndPoint, taking player direction into account
