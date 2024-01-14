@@ -5,6 +5,7 @@ public class PlayerMovement_1 : MonoBehaviour
 {
     [Header("Values")]
     [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float maxSpeed = 1f;
     [SerializeField] private float jumpForceMagnitude = 10f;
     [Space]
     [Header("Ground check")]
@@ -47,10 +48,14 @@ public class PlayerMovement_1 : MonoBehaviour
     // Using Unity's new Input system from GameInput's monobehaviour instance.
     private void HandleHorizontalMovement()
     {
-
         if (movementVector.x != 0f)
         {
-            rb.position += movementSpeed * Time.fixedDeltaTime * new Vector2(movementVector.x, 0f);
+            Vector2 velocity = Vector2.zero;
+            velocity.x += movementVector.x * Time.fixedDeltaTime;
+            float xMovement = velocity.x * movementSpeed;
+            xMovement = Mathf.Clamp(xMovement, -maxSpeed, maxSpeed);
+            rb.velocity += new Vector2(xMovement, 0f);
+
             playerAnimations.SetMoveBoolTransition(true);
 
             // -1 as X local scale "flips" the player to the left
@@ -67,6 +72,9 @@ public class PlayerMovement_1 : MonoBehaviour
         }
         else
         {
+            /*if (IsGrounded())
+                rb.velocity = new Vector2(0f, rb.velocity.y);*/
+
             playerAnimations.SetMoveBoolTransition(false);
         }
 

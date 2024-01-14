@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float shootForceMagnitude;
-    [SerializeField] private int bulletDamage;
 
     private void Awake()
     {
@@ -23,7 +19,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.TryGetComponent(out HealthSystem healthSystem))
-            healthSystem.TakeDamage(bulletDamage);
+            healthSystem.TakeDamage();
         Destroy(gameObject);
     }
 

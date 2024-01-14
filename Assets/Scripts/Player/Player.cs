@@ -1,22 +1,37 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Config")]
-    [SerializeField] private PlayerStats stats;
-
-    public PlayerStats Stats => stats;
-
-    // private PlayerAnimations animations;
-
-    private void Awake()
+    private void OnEnable()
     {
-        // animations = GetComponent<PlayerAnimations>();
+        GameManager.Instance.OnGameOver += OnGameOver;
     }
 
-    public void ResetPlayer()
+    private void OnDisable()
     {
-        stats.ResetPlayer();
-        // animations.ResetPlayer();
+        GameManager.Instance.OnGameOver -= OnGameOver;
+    }
+
+    private void OnGameOver()
+    {
+        Destroy(gameObject);
+    }
+
+    public enum Number
+    {
+        One,
+        Two
+    }
+    public Number number;
+
+    public void DestroyComponentsExcept(Component component)
+    {
+        Component[] components = GetComponents<Component>();
+        foreach (Component comp in components)
+        {
+            if (comp != component && comp != transform && comp != this)
+                Destroy(comp);
+        }
     }
 }

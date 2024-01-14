@@ -5,17 +5,18 @@ public class PlayerMovement_2 : MonoBehaviour
 {
     [Header("Values")]
     [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float maxSpeed = 10f;
     [SerializeField] private float jumpForceMagnitude = 10f;
     [Space]
     [Header("Ground check")]
     [SerializeField] private LayerMask groundLayer = 6;
 
-    private Vector2 movementVector;
-
     private Rigidbody2D rb;
     private Collider2D playerCollider;
-
     private PlayerAnimations playerAnimations;
+    private Vector2 movementVector;
+    private float originalGravityScale;
+    private bool isFlying;
 
     private void OnEnable()
     {
@@ -32,6 +33,13 @@ public class PlayerMovement_2 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<Collider2D>();
         playerAnimations = GetComponent<PlayerAnimations>();
+        originalGravityScale = rb.gravityScale;
+    }
+
+    private void Start()
+    {
+        // Start flying
+        Jump();
     }
 
     private void Update()
@@ -41,16 +49,28 @@ public class PlayerMovement_2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        HandleHorizontalMovement();
+        HandleMovement();
     }
 
     // Using Unity's new Input system from GameInput's monobehaviour instance.
-    private void HandleHorizontalMovement()
+    private void HandleMovement()
     {
 
-        if (movementVector.x != 0f)
+        if (movementVector != Vector2.zero)
         {
-            rb.position += movementSpeed * Time.fixedDeltaTime * new Vector2(movementVector.x, 0f);
+            Vector2 velocity = Vector2.zero;
+            velocity += movementVector * Time.fixedDeltaTime;
+
+            if (isFlying)
+                rb.velocity += velocity * movementSpeed;
+
+            else
+            {
+                float xMovement = velocity.x * movementSpeed;
+                xMovement = Mathf.Clamp(xMovement, -maxSpeed, maxSpeed);
+                rb.velocity += new Vector2(xMovement, rb.velocity.y * Time.fixedDeltaTime);
+            }
+
             playerAnimations.SetMoveBoolTransition(true);
 
             // -1 as X local scale "flips" the player to the left
@@ -67,6 +87,9 @@ public class PlayerMovement_2 : MonoBehaviour
         }
         else
         {
+            /*if (!isFlying && IsGrounded())
+                rb.velocity = new Vector2(0f, rb.velocity.y);*/
+
             playerAnimations.SetMoveBoolTransition(false);
         }
 
@@ -76,8 +99,26 @@ public class PlayerMovement_2 : MonoBehaviour
     // On Jump button pressed
     private void Jump_performed(InputAction.CallbackContext _)
     {
+        Jump();
+    }
+
+    private void Jump()
+    {
         if (IsGrounded())
             rb.AddForce(Vector2.up * jumpForceMagnitude);
+
+        else if (rb.gravityScale == originalGravityScale)
+        {
+            rb.gravityScale = 0f;
+            rb.velocity = Vector2.zero;
+        }
+
+        else
+        {
+            rb.gravityScale = originalGravityScale;
+        }
+
+        isFlying = rb.gravityScale == 0f;
     }
 
     // Check if the player is on the ground

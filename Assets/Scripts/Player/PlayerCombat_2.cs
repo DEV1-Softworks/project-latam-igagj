@@ -14,6 +14,9 @@ public class PlayerCombat_2 : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private ParticleSystem smokeParticles;
     [SerializeField] private ParticleSystem sparksParticles;
+    [Space]
+    [Header("Settings")]
+    [SerializeField] private LayerMask playerLayer;
 
     private void OnEnable()
     {
@@ -25,17 +28,23 @@ public class PlayerCombat_2 : MonoBehaviour
         GameInput.Instance.inputActions.Player2.Attack.performed -= Attack_performed;
     }
 
+    // Spawn a projectile that ignores players, at gunEndPoint, taking player direction into account
     private void Attack_performed(InputAction.CallbackContext _)
     {
         if (armed)
         {
-            // Spawn a bullet at gunEndPoint, taking player direction into account
-            GameObject bullet = Instantiate(pfProjectile, gunEndPoint.position, Quaternion.Euler(0f, 0f, transform.localScale.x == 1f ? 0f : 180f)); // TODO: Readability
-            Projectile projectileScript = bullet.GetComponent<Projectile>();
+            float gunAngle = transform.localScale.x == 1f ? 0f : 180f;
+            Quaternion gunRotation = Quaternion.Euler(0f, 0f, gunAngle);
+
+            GameObject projectile = Instantiate(pfProjectile, gunEndPoint.position, gunRotation);
+
+            // Modify projectile
+            Projectile projectileScript = projectile.GetComponent<Projectile>();
             projectileScript.SetShootForce(shootForceMagnitude);
+            projectileScript.GetComponent<Rigidbody2D>().excludeLayers = playerLayer;
 
+            // Play particle systems
             smokeParticles.Play();
-
             ParticleSystem newParticle = Instantiate(sparksParticles, gunEndPoint.position, gunEndPoint.rotation);
             newParticle.Play();
             Destroy(newParticle.gameObject, 1f);

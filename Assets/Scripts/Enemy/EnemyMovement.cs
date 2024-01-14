@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -14,8 +11,11 @@ public class EnemyMovement : MonoBehaviour
     }
 
     // TODO: Get closest player!
-    private float GetAnyPlayerXPos() 
+    private float GetAnyPlayerXPos()
     {
-        return FindAnyObjectByType<PlayerMovement_2>().transform.position.x; // Inefficient!
+        // Inefficient!
+        if (FindAnyObjectByType<Player>() != null)
+            return FindAnyObjectByType<Player>().transform.position.x;
+        return transform.position.x;
     }
 }
