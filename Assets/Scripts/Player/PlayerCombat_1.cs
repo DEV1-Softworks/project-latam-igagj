@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCombat : MonoBehaviour
+public class PlayerCombat_1 : MonoBehaviour
 {
     [Header("Weapon")]
     [SerializeField] private Transform gunEndPoint;

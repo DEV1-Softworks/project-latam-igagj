@@ -16,6 +16,6 @@ public class EnemyMovement : MonoBehaviour
     // TODO: Get closest player!
     private float GetAnyPlayerXPos() 
     {
-        return FindAnyObjectByType<PlayerMovement>().transform.position.x; // Inefficient!
+        return FindAnyObjectByType<PlayerMovement_2>().transform.position.x; // Inefficient!
     }
 }

@@ -33,8 +33,13 @@ public class GameInput : MonoBehaviour
     }
 
     // Get PlayerInputActions' movement Vector2
-    public Vector2 GetMovementVector()
+    public Vector2 GetPlayer1MovementVector()
     {
         return inputActions.Player1.Movement.ReadValue<Vector2>();
+    }
+
+    public Vector2 GetPlayer2MovementVector()
+    {
+        return inputActions.Player2.Movement.ReadValue<Vector2>();
     }
 }
